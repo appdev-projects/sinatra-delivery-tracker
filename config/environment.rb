@@ -1,6 +1,6 @@
 require "./app"
 
-set :public_folder, "public"
+enable :sessions
 
 configure do
   # setup a database connection
@@ -22,7 +22,7 @@ configure :development do
 
   AppdevSupport.config do |config|
     # config.action_dispatch = true;
-    # config.active_record = true;
+    config.active_record = true;
     config.pryrc = :full
   end
   AppdevSupport.init
