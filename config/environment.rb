@@ -1,5 +1,7 @@
 require "./app"
 
+set :public_folder, "public"
+
 configure do
   # setup a database connection
   set(:database, { adapter: "sqlite3", database: "db/development.sqlite3" })
