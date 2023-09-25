@@ -1,5 +1,10 @@
 require "./app"
 
+configure do
+  # setup a database connection
+  set(:database, { adapter: "sqlite3", database: "db/development.sqlite3" })
+end
+
 configure :development do
   # we would also like a nicer error page in development
   require "better_errors"
