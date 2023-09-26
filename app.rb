@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_secure_password
 end
 
+# Helper methods to load current user and force sign in
 helpers do
   def load_current_user
     the_id = session[:user_id]
@@ -30,8 +31,22 @@ helpers do
   end
 end
 
+# Do these before any other action in app
+before do
+  load_current_user
 
+  path_segments = request.path_info.split('/')
+  current_path = path_segments[1]
+  allowed_paths = ['user_sign_up', 'insert_user', 'user_sign_in']
 
+  if allowed_paths.include?(current_path)
+    pass 
+  else
+    force_user_sign_in
+  end
+end
+
+# root page
 get("/") do
   redirect("/deliveries")
 end
@@ -121,7 +136,6 @@ post("/insert_user") do
   the_user.password = params.fetch("query_password")
   the_user.save
   session[:user_id] = the_user.id
-  puts session
   redirect("/users/#{the_user.username}")
 end
 
