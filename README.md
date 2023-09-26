@@ -1,4 +1,4 @@
-# sinatra-template
+# sinatra-delivery-tracker
 
 Use this repository to create new Sinatra apps. 
 

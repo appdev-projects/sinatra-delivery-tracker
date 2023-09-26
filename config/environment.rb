@@ -1,5 +1,12 @@
 require "./app"
 
+enable :sessions
+
+configure do
+  # setup a database connection
+  set(:database, { adapter: "sqlite3", database: "db/development.sqlite3" })
+end
+
 configure :development do
   # we would also like a nicer error page in development
   require "better_errors"
@@ -15,7 +22,7 @@ configure :development do
 
   AppdevSupport.config do |config|
     # config.action_dispatch = true;
-    # config.active_record = true;
+    config.active_record = true;
     config.pryrc = :full
   end
   AppdevSupport.init

@@ -1,0 +1,17 @@
+<h1><%= @the_user.username %></h1>
+
+<dl>
+  <dt>ID</dt>
+  <dd><%= @the_user.id %></dd>
+  <% if @the_user == @current_user %>
+    <dt>Edit user</dt>
+    <dd>
+      <form action="/update_user/<%= @the_user.id %>" method="post">
+        <label for="browser_username">Username</label>
+        <input id="browser_username" type="text" name="query_username" placeholder="Enter a username..." value="<%= @the_user.username %>">
+
+        <button>Update user</button>
+      </form>
+    </dd>
+  <% end %>
+</dl>
